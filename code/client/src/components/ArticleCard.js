@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import queries from '../queries';
 
 const ArticleCard = props => {
-    console.log(props)
+    console.log(props.id)
     return (
         <Query query={queries.GET_BLOG}
             variables={{ id: props.id }}

@@ -72,7 +72,7 @@ query elasticSearch($searchString: String){
 `;
 
 const GET_BLOG = gql`
-    query getBlog($id: String!) {
+    query getBlog($id: ID!) {
         getBlog(
             id: $id
         ) {
@@ -100,6 +100,18 @@ const GET_ALL_TAGS = gql`
             tag
         }
     }
+`;
+
+
+const POST_COMMENT = gql`
+mutation postComment($content:String!, $blogId:ID!){
+    postComment(
+        content: $content, 
+        blogId: $blogId
+    ) {
+      content
+    }
+  }
 `;
 
 const LIKE_BLOG = gql`
@@ -143,6 +155,7 @@ const LOGIN = gql`
 
 let TOKEN = "aaa";
 
+
 export default {
     ME,
     UPDATE_USER,
@@ -151,8 +164,10 @@ export default {
     ELASTIC_SEARCH,
     GET_BLOG,
     GET_ALL_TAGS,
+    POST_COMMENT,
     LIKE_BLOG,
     SIGN_UP,
     LOGIN,
     TOKEN
+
 }
