@@ -8,6 +8,8 @@ import SignUp from './SignUp';
 import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
 import NewUserSurvey from './forms/NewUserSurvey';
+import ArticleItem from './components/ArticleItem';
+import ShowProfile from './ShowProfile';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route path="/create" component={CreateArticle} />
           <Route path="/signup/survey" component={NewUserSurvey} />
+          <Route path="/article/:id" component={ArticleItem} />
+          {/* <Route path="/profile" component={ShowProfile} /> */}
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
                   <Route path="/pokemon/" component={PokemonListContainer} /> */}
         </Switch>

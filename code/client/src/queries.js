@@ -72,7 +72,7 @@ query elasticSearch($searchString: String){
 `;
 
 const GET_BLOG = gql`
-    query getBlog($id: String!) {
+    query getBlog($id: ID!) {
         getBlog(
             id: $id
         ) {
@@ -102,6 +102,17 @@ const GET_ALL_TAGS = gql`
     }
 `;
 
+const POST_COMMENT = gql`
+mutation postComment($content:String!, $blogId:ID!){
+    postComment(
+        content: $content, 
+        blogId: $blogId
+    ) {
+      content
+    }
+  }
+`;
+
 export default {
     ME,
     UPDATE_USER,
@@ -109,5 +120,6 @@ export default {
     GET_ALL_BLOGS,
     ELASTIC_SEARCH,
     GET_BLOG,
-    GET_ALL_TAGS
+    GET_ALL_TAGS,
+    POST_COMMENT
 }
