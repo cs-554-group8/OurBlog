@@ -102,6 +102,7 @@ const GET_ALL_TAGS = gql`
     }
 `;
 
+
 const POST_COMMENT = gql`
 mutation postComment($content:String!, $blogId:ID!){
     postComment(
@@ -113,6 +114,48 @@ mutation postComment($content:String!, $blogId:ID!){
   }
 `;
 
+const LIKE_BLOG = gql`
+    mutation likeBlog($id: ID!){
+        likeBlog(
+            id: $id
+        ) {
+            id
+            title
+            article
+            likes
+        }
+    }
+`;
+
+const SIGN_UP = gql`
+    mutation signup($name: String!, $email: String!, $password: String!) {
+        signup(
+            name: $name,
+            password: $password,
+            email: $email
+        ) {
+           token
+           user {
+               id
+           }
+        }
+    }
+`;
+
+const LOGIN = gql`
+    mutation login($email: String!, $password: String!){
+        login(
+            email: $email,
+            password: $password
+        ) {
+            token
+        }
+    }
+`;
+
+let TOKEN = "aaa";
+
+
 export default {
     ME,
     UPDATE_USER,
@@ -121,5 +164,10 @@ export default {
     ELASTIC_SEARCH,
     GET_BLOG,
     GET_ALL_TAGS,
-    POST_COMMENT
+    POST_COMMENT,
+    LIKE_BLOG,
+    SIGN_UP,
+    LOGIN,
+    TOKEN
+
 }
