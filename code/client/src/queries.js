@@ -89,6 +89,10 @@ const GET_BLOG = gql`
             comments {
                 id
             }
+            relatedTag {
+                id
+                tag
+            }
         }
     }
 `;
@@ -153,6 +157,21 @@ const LOGIN = gql`
     }
 `;
 
+const GET_TAG = gql`
+query getTag ($id: ID!){
+    getTag(
+        id: $id
+    ) {
+        id
+        tag
+        blogs {
+            id
+            title
+        }
+    }
+  }
+`;
+
 let TOKEN = "aaa";
 
 
@@ -168,6 +187,11 @@ export default {
     LIKE_BLOG,
     SIGN_UP,
     LOGIN,
+<<<<<<< HEAD
+    TOKEN,
+    GET_TAG
+=======
     TOKEN
 
+>>>>>>> master
 }
