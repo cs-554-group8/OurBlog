@@ -110,6 +110,7 @@ mutation postComment($content:String!, $blogId:ID!){
         blogId: $blogId
     ) {
       content
+      postedBy
     }
   }
 `;
