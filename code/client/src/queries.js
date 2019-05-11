@@ -187,11 +187,6 @@ export default {
     LIKE_BLOG,
     SIGN_UP,
     LOGIN,
-<<<<<<< HEAD
     TOKEN,
     GET_TAG
-=======
-    TOKEN
-
->>>>>>> master
 }
