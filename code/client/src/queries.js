@@ -106,6 +106,18 @@ const GET_ALL_TAGS = gql`
     }
 `;
 
+
+const POST_COMMENT = gql`
+mutation postComment($content:String!, $blogId:ID!){
+    postComment(
+        content: $content, 
+        blogId: $blogId
+    ) {
+      content
+    }
+  }
+`;
+
 const LIKE_BLOG = gql`
     mutation likeBlog($id: ID!){
         likeBlog(
@@ -162,6 +174,7 @@ query getTag ($id: ID!){
 
 let TOKEN = "aaa";
 
+
 export default {
     ME,
     UPDATE_USER,
@@ -170,9 +183,15 @@ export default {
     ELASTIC_SEARCH,
     GET_BLOG,
     GET_ALL_TAGS,
+    POST_COMMENT,
     LIKE_BLOG,
     SIGN_UP,
     LOGIN,
+<<<<<<< HEAD
     TOKEN,
     GET_TAG
+=======
+    TOKEN
+
+>>>>>>> master
 }
