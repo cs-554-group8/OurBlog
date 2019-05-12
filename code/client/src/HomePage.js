@@ -38,7 +38,6 @@ class HomePage extends Component {
                                     variables: { searchString: this.state.searchString }
                                 });
                                 this.fetchTag(data.elasticSearch);
-                                console.log(this.state);
                             }}>
                                 <Form.Group controlId="searchBar">
                                     <Form.Label>Search</Form.Label>

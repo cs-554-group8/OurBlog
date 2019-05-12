@@ -4,14 +4,17 @@ const ME = gql`
     query {
         me {
             id
+            name
+            email
         }
     }
 `;
 
 const UPDATE_USER = gql`
-    mutation updateUser ($id: String!, $phone: String, $address: String, $interest:String){
+    mutation updateUser ($name: String!, $email: String! , $phone: String, $address: String, $interest:String){
         updateUser(
-            id: $id,
+            name: $name,
+            email: $email,
             phone: $phone,
             address: $address,
             interest: $interest
