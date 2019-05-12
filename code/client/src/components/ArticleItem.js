@@ -37,9 +37,6 @@ render(){
                     return null;
                 }
              if (error) return `Error: ${error}`
-
-                console.log("state id: ", this.state.id)
-                console.log("data", data)
                 if (!data) {
                     console.log("Data not found");
                     // refetch();
@@ -62,12 +59,24 @@ render(){
                                     <Card.Title>{getBlog.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Created At: {getBlog.createdAt}</Card.Subtitle>
                                     <Card.Subtitle className="mb-2 text-muted">Updated At: {getBlog.updatedAt}</Card.Subtitle>
+                                    
+                                    <br />
                                     <Card.Text>
                                         {getBlog.article}
                                     </Card.Text>
     
                                 </Card.Body>
                             </Card>
+                     <br/>
+                     <br />
+                           <div> 
+                               <Card >
+                               {getBlog.comments.content},
+                               {getBlog.postedBy.name}
+                               </Card>
+                           </div>
+                          <br />
+
                             <AddComment blogId={this.state.id} handleClose={this.handleClose}/>
                         </div>
             );

@@ -20,9 +20,16 @@ function App(isLoggedIn) {
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <Container fluid={true}>
-              <Navbar.Brand href="/">OurBlog</Navbar.Brand>
+            <Navbar.Brand href="#home">
+            <img
+            src="/blog.png"
+            width="50"
+            height="40"
+            className="d-inline-block align-top"
+            />
+    </Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
+               
                 <NavDropdown title="Articles" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -44,7 +51,7 @@ function App(isLoggedIn) {
           <Route path="/create" component={CreateArticle} />
           <Route path="/signup/survey" component={NewUserSurvey} />
           <Route path="/article/:id" component={ArticleItem} />
-          {/* <Route path="/profile" component={ShowProfile} /> */}
+          <Route path="/profile/:id" component={ShowProfile} />
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
                   <Route path="/pokemon/" component={PokemonListContainer} /> */}
         </Switch>

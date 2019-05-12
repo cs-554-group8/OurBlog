@@ -87,12 +87,84 @@ class HomePage extends Component {
                                 <div>
                                     {this.state.articles && <ArticleList articles={this.state.articles} />}
                                 </div>
+
+                            );
+                        }
+                        const { elasticSearch } = data;
+                        if (!elasticSearch) {
+                            return (
+                                <div>
+                                    <ErrorPage />
+                                </div>
+                            );
+                        }
+                        else {
+                            return (
+                                <div>
+                                    <br/>
+                                    <Row className="justify-content-md-center">
+                                        <Form inline onSubmit={() => {
+                                            searchString = searchString.value
+                                            refetch()
+                                        }}>
+                                            <Form.Group controlId="searchBar">
+                                                <Form.Label>Search</Form.Label>
+                                                <Form.Control type="search" name="searchString"/>
+                                            </Form.Group>
+                                            <Button variant="primary" type="submit">
+                                                Submit
+                                            </Button>
+                                        </Form>
+                                    </Row>
+                                    <Row>
+                                        <Col sm={2} className="float-left">
+                                            <Query query={queries.GET_ALL_TAGS}>
+                                                {({data}) => {
+                                                    if(!data) {
+                                                        return null;
+                                                    }
+                                                    const { allTags } = data;
+                                                    console.log(allTags)
+                                                    if(!allTags) {
+                                                        return null;
+                                                    } else {
+                                                        return (
+                                                            <div>
+                                                                <Form.Label><b>Tags:</b></Form.Label> 
+                                                                <br />
+                                                                <ButtonGroup vertical>
+                                                                    {allTags.map((tag) => {
+                                                                        return <Button key={tag.id}>{tag.tag}</Button>
+                                                                    })}
+                                                                </ButtonGroup>
+                                                            </div>
+                                                        );
+                                                    }
+                                                }}
+                                            </Query>
+                                        </Col>
+                                        <Col sm={10} className="justify-content-md-center">
+                                            <div>
+                                                <ArticleList articles={elasticSearch} />
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            );
+                        }}}
+                    </Query>
+                </Container>
+
+            </div>
+        );
+
                             </Col>
                         </Row>
                     </div>
                 )}
             </ApolloConsumer>
         )
+
     }
 
 }

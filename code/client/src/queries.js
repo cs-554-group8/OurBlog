@@ -11,6 +11,11 @@ const ME = gql`
 `;
 
 const UPDATE_USER = gql`
+    mutation updateUser ($id: String!, $name: String!, $password:String!, $email: String!, $phone: String, $address: String, $interest:String){
+        updateUser(
+            id: $id,
+            name: $name,
+            password: $password,
     mutation updateUser ($name: String!, $email: String! , $phone: String, $address: String, $interest:String){
         updateUser(
             name: $name,
@@ -91,6 +96,7 @@ const GET_BLOG = gql`
             }
             comments {
                 id
+                content
             }
             relatedTag {
                 id
@@ -117,6 +123,7 @@ mutation postComment($content:String!, $blogId:ID!){
         blogId: $blogId
     ) {
       content
+      postedBy
     }
   }
 `;
@@ -177,6 +184,32 @@ query getTag ($id: ID!){
 
 let TOKEN = "aaa";
 
+const GET_USER = gql`
+     query getUser($id: ID!){
+        getUser(id: $id){
+            id
+            createdAt
+            name
+            password
+            email
+            phone
+            address
+            interest
+            blogs{
+                id
+                title
+                content
+            }
+            comments {
+                id
+              } 
+        }
+
+        
+     }
+`;
+
+
 
 export default {
     ME,
@@ -191,5 +224,7 @@ export default {
     SIGN_UP,
     LOGIN,
     TOKEN,
+    GET_USER,
     GET_TAG
+
 }
