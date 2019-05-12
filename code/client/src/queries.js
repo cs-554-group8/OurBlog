@@ -4,6 +4,8 @@ const ME = gql`
     query {
         me {
             id
+            name
+            email
         }
     }
 `;
@@ -14,6 +16,9 @@ const UPDATE_USER = gql`
             id: $id,
             name: $name,
             password: $password,
+    mutation updateUser ($name: String!, $email: String! , $phone: String, $address: String, $interest:String){
+        updateUser(
+            name: $name,
             email: $email,
             phone: $phone,
             address: $address,
@@ -93,6 +98,10 @@ const GET_BLOG = gql`
                 id
                 content
             }
+            relatedTag {
+                id
+                tag
+            }
         }
     }
 `;
@@ -158,6 +167,21 @@ const LOGIN = gql`
     }
 `;
 
+const GET_TAG = gql`
+query getTag ($id: ID!){
+    getTag(
+        id: $id
+    ) {
+        id
+        tag
+        blogs {
+            id
+            title
+        }
+    }
+  }
+`;
+
 let TOKEN = "aaa";
 
 const GET_USER = gql`
@@ -200,6 +224,7 @@ export default {
     SIGN_UP,
     LOGIN,
     TOKEN,
-    GET_USER
+    GET_USER,
+    GET_TAG
 
 }
