@@ -152,10 +152,6 @@ class HomePage extends Component {
                                 </div>
                             );
                         }}}
-                    </Query>
-                </Container>
-
-            </div>
         );
 
                             </Col>

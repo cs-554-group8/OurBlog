@@ -9,7 +9,7 @@ import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
 import NewUserSurvey from './forms/NewUserSurvey';
 import ArticleItem from './components/ArticleItem';
-// import ShowProfile from './ShowProfile';
+import ShowProfile from './ShowProfile';
 import AccountButtons from './components/AccountButtons';
 import LogOut from './components/LogOut';
 
