@@ -5,6 +5,24 @@ import ErrorPage from '../components/ErrorPage';
 import queries from '../queries';
 
 class NewUserSurvey extends Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            street_address: "",
+            address2: "",
+            city: "",
+            state: "",
+            zipcode: "",
+            phone: "",
+            interest: ""
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+
     render() {
         let phone, address, interest;
         let street_address, address2, city, state, zipcode;
@@ -18,7 +36,6 @@ class NewUserSurvey extends Component {
                                     if (!data) {
                                         return (
                                             <div>
-                                                <ErrorPage />
                                             </div>
                                         );
                                     }
@@ -26,7 +43,6 @@ class NewUserSurvey extends Component {
                                     if (!me) {
                                         return (
                                             <div>
-                                                <ErrorPage />
                                             </div>
                                         );
                                     } else {
@@ -35,23 +51,17 @@ class NewUserSurvey extends Component {
                                                 {(updateUser, { data }) => (
                                                     <Form onSubmit={e => {
                                                         e.preventDefault();
-                                                        let address_arr = [street_address, address2.city, state, zipcode];
+                                                        let address_arr = [this.state.street_address, this.state.address2, this.state.city, this.state.state, this.state.zipcode];
                                                         address = address_arr.join(", ");
+                                                        console.log("vars: ", me.id, this.state.phone, address, this.state.interest);
                                                         updateUser({
                                                             variables: {
                                                                 id: me.id,
-                                                                phone: phone.value,
+                                                                phone: this.state.phone,
                                                                 address: address,
-                                                                interest: interest.value
+                                                                interest: this.state.interest
                                                             }
                                                         });
-                                                        phone.value = "";
-                                                        interest.value = "";
-                                                        street_address.value = "";
-                                                        address2.value = "";
-                                                        city.value = "";
-                                                        state.value = "";
-                                                        zipcode.value = "";
                                                     }}>
                                                         <Form.Group>
                                                             <Form.Label>Phone Number</Form.Label>
@@ -59,9 +69,7 @@ class NewUserSurvey extends Component {
                                                                 name="phone"
                                                                 type="phone"
                                                                 placeholder="Phone Number"
-                                                                ref={node => {
-                                                                    phone = node
-                                                                }}
+                                                                onChange={this.handleChange}
                                                             />
                                                         </Form.Group>
                                                         <Form.Group>
@@ -70,9 +78,7 @@ class NewUserSurvey extends Component {
                                                                 name="street_address"
                                                                 type="street_address"
                                                                 placeholder="1234 Main St"
-                                                                ref={node => {
-                                                                    street_address = node
-                                                                }}
+                                                                onChange={this.handleChange}
                                                             />
                                                         </Form.Group>
                                                         <Form.Group>
@@ -81,9 +87,7 @@ class NewUserSurvey extends Component {
                                                                 name="address2"
                                                                 type="address2"
                                                                 placeholder="Apartment, studio, or floor"
-                                                                ref={node => {
-                                                                    address2 = node
-                                                                }}
+                                                                onChange={this.handleChange}
                                                             />
                                                         </Form.Group>
                                                         <Row>
@@ -93,9 +97,7 @@ class NewUserSurvey extends Component {
                                                                     <Form.Control
                                                                         name="city"
                                                                         type="city"
-                                                                        ref={node => {
-                                                                            city = node
-                                                                        }}
+                                                                        onChange={this.handleChange}
                                                                     />
                                                                 </Form.Group>
                                                             </Col>
@@ -105,9 +107,7 @@ class NewUserSurvey extends Component {
                                                                     <Form.Control
                                                                         name="state"
                                                                         type="state"
-                                                                        ref={node => {
-                                                                            state = node
-                                                                        }}
+                                                                        onChange={this.handleChange}
                                                                     />
                                                                 </Form.Group>
                                                             </Col>
@@ -117,19 +117,15 @@ class NewUserSurvey extends Component {
                                                                     <Form.Control
                                                                         name="zipcode"
                                                                         type="zipcode"
-                                                                        ref={node => {
-                                                                            zipcode = node
-                                                                        }}
+                                                                        onChange={this.handleChange}
                                                                     />
                                                                 </Form.Group>
                                                             </Col>
                                                         </Row>
                                                         <Form.Group controlId="interest">
                                                             <Form.Label>Interests</Form.Label>
-                                                            <Form.Control as="textarea" rows="2"
-                                                                ref={node => {
-                                                                    interest = node;
-                                                                }}
+                                                            <Form.Control name="interest" as="textarea" rows="2"
+                                                                onChange={this.handleChange}
                                                             />
                                                         </Form.Group>
                                                         <Button variant="outline-primary" type="submit">Submit</Button>
