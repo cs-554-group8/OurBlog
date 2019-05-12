@@ -11,12 +11,11 @@ const ME = gql`
 `;
 
 const UPDATE_USER = gql`
-    mutation updateUser ($id: String!, $name: String!, $password:String!, $email: String!, $phone: String, $address: String, $interest:String){
+    mutation updateUser ($name: String!, $password:String, $email: String!, $phone: String, $address: String, $interest:String){
         updateUser(
-            id: $id,
             name: $name,
-            password: $password,
             email: $email,
+            password: $password,
             phone: $phone,
             address: $address,
             interest: $interest
