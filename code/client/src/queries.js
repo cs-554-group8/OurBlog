@@ -16,9 +16,6 @@ const UPDATE_USER = gql`
             id: $id,
             name: $name,
             password: $password,
-    mutation updateUser ($name: String!, $email: String! , $phone: String, $address: String, $interest:String){
-        updateUser(
-            name: $name,
             email: $email,
             phone: $phone,
             address: $address,
