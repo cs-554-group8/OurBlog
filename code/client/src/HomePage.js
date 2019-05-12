@@ -45,6 +45,7 @@ class HomePage extends Component {
                         else {
                             return (
                                 <div>
+                                    <br/>
                                     <Row className="justify-content-md-center">
                                         <Form inline onSubmit={() => {
                                             searchString = searchString.value

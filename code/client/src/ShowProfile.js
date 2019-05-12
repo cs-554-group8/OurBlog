@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import queries from './queries';
 import { Query } from 'react-apollo';
 import { Card } from 'react-bootstrap';
-
+import UpdateUser from './components/UpdateUser'
 
 class ShowProfile extends Component {
     constructor(props) {
@@ -16,13 +16,11 @@ class ShowProfile extends Component {
        
     }
     componentDidMount(){
-     const id = this.state.id
+     const id = this.props.match.params.id
      this.setState({id: id})
-     console.log("here", id);
       }
      
       render(){
-        console.log("state", this.state.id);
             return (
                 <Query query={queries.GET_USER}
                 variables={{ id: this.state.id }}
@@ -38,7 +36,6 @@ class ShowProfile extends Component {
                     console.log("data", data)
                     if (!data) {
                         console.log("Data not found");
-                        // refetch();
                         return (
                             <div>
                             </div>
@@ -66,7 +63,8 @@ class ShowProfile extends Component {
                                         </Card.Subtitle> */}
                                     </Card.Body>
                                 </Card>
-                                
+                                <br/>
+                                <UpdateUser userId={this.state.id} handleClose={this.handleClose}/>
                             </div>
                 );
             }

@@ -68,7 +68,7 @@ class AddComment extends Component {
                                         />
                                       
                                     </Form.Group>
-                                    <div className= "card-footer">  {this.state.postedBy} </div>
+                                    <div className= "card-footer">  {this.state.comment.postedBy} </div>
                                     <Button variant="outline-primary" type="submit">Post</Button>
                                 </Form>
                             )}

@@ -9,9 +9,12 @@ const ME = gql`
 `;
 
 const UPDATE_USER = gql`
-    mutation updateUser ($id: String!, $phone: String, $address: String, $interest:String){
+    mutation updateUser ($id: String!, $name: String!, $password:String!, $email: String!, $phone: String, $address: String, $interest:String){
         updateUser(
             id: $id,
+            name: $name,
+            password: $password,
+            email: $email,
             phone: $phone,
             address: $address,
             interest: $interest
@@ -88,6 +91,7 @@ const GET_BLOG = gql`
             }
             comments {
                 id
+                content
             }
         }
     }
@@ -156,6 +160,32 @@ const LOGIN = gql`
 
 let TOKEN = "aaa";
 
+const GET_USER = gql`
+     query getUser($id: ID!){
+        getUser(id: $id){
+            id
+            createdAt
+            name
+            password
+            email
+            phone
+            address
+            interest
+            blogs{
+                id
+                title
+                content
+            }
+            comments {
+                id
+              } 
+        }
+
+        
+     }
+`;
+
+
 
 export default {
     ME,
@@ -169,6 +199,7 @@ export default {
     LIKE_BLOG,
     SIGN_UP,
     LOGIN,
-    TOKEN
+    TOKEN,
+    GET_USER
 
 }
