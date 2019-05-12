@@ -37,7 +37,6 @@ class NewArticle extends Component {
                         {(addBlogToTagById, { }) =>
                             <Mutation mutation={queries.POST_BLOG}
                                 onCompleted={({ postBlog }) => {
-                                    console.log(postBlog.id, this.state.tag);
                                     addBlogToTagById({
                                         variables: {
                                             tagId: this.state.tag,
@@ -52,12 +51,6 @@ class NewArticle extends Component {
                                     return (
                                         <Form onSubmit={async (e) => {
                                             e.preventDefault();
-                                            // var finalTags = [];
-                                            // this.state.tags.forEach(function (val, key) {
-                                            //     if (val) {
-                                            //         finalTags.push(key);
-                                            //     }
-                                            // });
                                             postBlog({
                                                 variables: {
                                                     title: this.state.title,
