@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Container, Col } from 'react-bootstrap';
 import { Query, Mutation } from 'react-apollo';
-import ErrorPage from '../components/ErrorPage';
+// import ErrorPage from '../components/ErrorPage';
 import queries from '../queries';
+import { Redirect } from 'react-router-dom';
 
 class NewUserSurvey extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class NewUserSurvey extends Component {
             state: "",
             zipcode: "",
             phone: "",
-            interest: ""
+            interest: "",
+            complete: false
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -24,8 +26,10 @@ class NewUserSurvey extends Component {
     };
 
     render() {
-        let phone, address, interest;
-        let street_address, address2, city, state, zipcode;
+        if (this.state.complete){
+            return <Redirect to='/' />;
+        }
+        let address;
         return (
             <div>
                 <Container>
@@ -56,12 +60,15 @@ class NewUserSurvey extends Component {
                                                         console.log("vars: ", me.id, this.state.phone, address, this.state.interest);
                                                         updateUser({
                                                             variables: {
-                                                                id: me.id,
+                                                                name: me.name,
+                                                                email: me.email,
                                                                 phone: this.state.phone,
                                                                 address: address,
                                                                 interest: this.state.interest
                                                             }
                                                         });
+                                                        this.setState({complete: true});
+                                                        
                                                     }}>
                                                         <Form.Group>
                                                             <Form.Label>Phone Number</Form.Label>
