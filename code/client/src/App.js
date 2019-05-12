@@ -14,7 +14,6 @@ import AccountButtons from './components/AccountButtons';
 import LogOut from './components/LogOut';
 
 function App(isLoggedIn) {
-  console.log("isLoggedIn", isLoggedIn.isLoggedIn)
   return (
     <Router>
       <div className="App">

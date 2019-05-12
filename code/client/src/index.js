@@ -20,17 +20,6 @@ import gql from 'graphql-tag';
 // The uri is a mandatory value to define the only GraphQL API endpoint used by the Apollo Client.
 const BASE_URL = 'http://localhost:5555/graphql';
 
-const customFetch = (uri, options) => {
-	return fetch(uri, {
-			...options,
-			headers: {
-				...options.headers,
-				"Authorization": `Bearer ${queries.TOKEN}`
-			}
-		}
-	);
-}
-
 
 /*
 he http link is a terminating link that fetches GraphQL results from a GraphQL endpoint over an http connection. 
@@ -39,7 +28,6 @@ This can be used for authentication, persisted queries, dynamic uris, and other 
 */
 let httpLink = new HttpLink({
 	uri: BASE_URL,
-	// fetch: customFetch,
 	headers: {
 		authorization: localStorage.getItem('token'),
 	},

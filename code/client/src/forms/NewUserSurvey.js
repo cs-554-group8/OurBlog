@@ -57,7 +57,6 @@ class NewUserSurvey extends Component {
                                                         e.preventDefault();
                                                         let address_arr = [this.state.street_address, this.state.address2, this.state.city, this.state.state, this.state.zipcode];
                                                         address = address_arr.join(", ");
-                                                        console.log("vars: ", me.id, this.state.phone, address, this.state.interest);
                                                         updateUser({
                                                             variables: {
                                                                 name: me.name,

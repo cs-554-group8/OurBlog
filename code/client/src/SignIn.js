@@ -30,7 +30,6 @@ class SignInContainer extends Component {
 
         try {
             let data = await firebase.auth().signInWithEmailAndPassword(email, password);
-            console.log(data);
             this.setState({ success: true });
         }
         catch (e) {
