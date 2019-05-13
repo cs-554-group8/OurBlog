@@ -7,7 +7,6 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
-import NewUserSurvey from './forms/NewUserSurvey';
 import ArticleItem from './components/ArticleItem';
 import ShowProfile from './ShowProfile';
 import AccountButtons from './components/AccountButtons';
@@ -27,6 +26,7 @@ function App(isLoggedIn) {
                   width="50"
                   height="40"
                   className="d-inline-block align-top"
+                  alt="OurBlog"
                 />
               </Navbar.Brand>
               <Nav className="mr-auto">
@@ -43,7 +43,6 @@ function App(isLoggedIn) {
           <Route path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route path="/create" component={CreateArticle} />
-          <Route path="/signup/survey" component={NewUserSurvey} />
           <Route path="/article/:id" component={ArticleItem} />
           <Route path="/profile/update" exact component={UpdateUser} />
           <Route path="/profile/" component={ShowProfile} />

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import queries from './queries';
 import { Query } from 'react-apollo';
 import { Card, Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
-import UpdateUser from './components/UpdateUser'
 import { Link } from 'react-router-dom'
 class ShowProfile extends Component {
     constructor(props) {

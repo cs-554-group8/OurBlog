@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Row, Col, FormGroup } from 'react-bootstrap';
+import { Form, Button, FormGroup } from 'react-bootstrap';
 import { Query, Mutation, ApolloConsumer } from 'react-apollo';
 import queries from '../queries';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ class NewArticle extends Component {
             <ApolloConsumer>
                 {client =>
                     <Mutation mutation={queries.ADD_BLOG_TO_TAG_BY_ID}>
-                        {(addBlogToTagById, { }) =>
+                        {(addBlogToTagById) =>
                             <Mutation mutation={queries.POST_BLOG}
                                 onCompleted={({ postBlog }) => {
                                     addBlogToTagById({
