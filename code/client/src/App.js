@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -21,17 +21,18 @@ function App(isLoggedIn) {
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <Container fluid={true}>
-            <Navbar.Brand href="/">
-            <img
-            src="/blog.png"
-            width="50"
-            height="40"
-            className="d-inline-block align-top"
-            />
-    </Navbar.Brand>
+              <Navbar.Brand href="/">
+                <img
+                  src="/blog.png"
+                  width="50"
+                  height="40"
+                  className="d-inline-block align-top"
+                />
+              </Navbar.Brand>
               <Nav className="mr-auto">
                 {isLoggedIn.isLoggedIn ? <LogOut /> : <AccountButtons isLoggedIn={isLoggedIn.isLoggedIn} />}
               </Nav>
+
             </Container>
           </Navbar>
           <br />
@@ -46,8 +47,7 @@ function App(isLoggedIn) {
           <Route path="/article/:id" component={ArticleItem} />
           <Route path="/profile/update" exact component={UpdateUser} />
           <Route path="/profile/" component={ShowProfile} />
-          {/* <Route path="/pokemon/" component={PokemonListContainer} />
-                  <Route path="/pokemon/" component={PokemonListContainer} /> */}
+
         </Switch>
       </div>
     </Router>

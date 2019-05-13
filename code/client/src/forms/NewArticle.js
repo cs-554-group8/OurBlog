@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Row, Col, FormGroup } from 'react-bootstrap';
+import { Form, Button, FormGroup } from 'react-bootstrap';
 import { Query, Mutation, ApolloConsumer } from 'react-apollo';
 import queries from '../queries';
 import { Link } from 'react-router-dom';
