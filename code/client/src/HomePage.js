@@ -20,7 +20,7 @@ class HomePage extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    async fetchTag(blogs) {
+    async fetchTag(blogs){
         await this.setState(() => ({ articles: blogs }));
     };
 
@@ -37,7 +37,7 @@ class HomePage extends Component {
                                     query: queries.ELASTIC_SEARCH,
                                     variables: { searchString: this.state.searchString }
                                 });
-
+                                
                                 this.fetchTag(data.elasticSearch);
                             }}>
                                 <Form.Group controlId="searchBar">
@@ -46,13 +46,8 @@ class HomePage extends Component {
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Submit
-
                                 </Button>
                             </Form>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
                         </Row>
                         <Row>
                             <Col sm={2} className="float-left">
@@ -91,24 +86,26 @@ class HomePage extends Component {
                             </Col>
                             <Col sm={10} className="justify-content-md-center">
                                 <div>
-                                    <Query query={queries.GET_ALL_BLOGS}>
-                                        {({ loading, error, data }) => {
-                                            if (data) {
-                                                let arr = data.allBlogs;
-                                                console.log("articles in state", this.state.articles)
-                                                if (arr && (this.state.articles.length === 0)) {
-                                                    return <ArticleList articles={arr} />
-                                                }
-                                                else {
-                                                    return <ArticleList articles={this.state.articles} />
-                                                }
-                                            }
-                                            return null
+                                <Query query={queries.GET_ALL_BLOGS}>
+                                  {({ loading, error, data }) => {
+                                     if(data){
+                                          let arr = data.allBlogs;
+                                          console.log("articles in state", this.state.articles)
+                                          if(arr && (this.state.articles.length === 0))
+                                          {
+                                            return <ArticleList articles={arr} />
+                                          }
+                                          else
+                                          {
+                                            return <ArticleList articles={this.state.articles} />
+                                          }
+                                      }
+                                    return null   
 
-                                        }}
-                                    </Query>
+                                  }}
+                                  </Query>
                                 </div>
-                            </Col>
+                </Col>
                         </Row>
                     </div>
                 )}

@@ -19,8 +19,8 @@ const LikeButton = (all) => {
                     })
                 }}
             >
-                {likeBlog => {
-
+                {likeBlog  => {
+                    
                     return (
                         <div>
                             <Button className="float-right" variant="outline-danger" onClick={e => {

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Container, Col } from 'react-bootstrap';
 import { Query, Mutation } from 'react-apollo';
+// import ErrorPage from '../components/ErrorPage';
 import queries from '../queries';
 import { Redirect } from 'react-router-dom';
 
 class NewUserSurvey extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state ={
             street_address: "",
             address2: "",
             city: "",
@@ -25,7 +26,7 @@ class NewUserSurvey extends Component {
     };
 
     render() {
-        if (this.state.complete) {
+        if (this.state.complete){
             return <Redirect to='/' />;
         }
         let address;
@@ -65,8 +66,8 @@ class NewUserSurvey extends Component {
                                                                 interest: this.state.interest
                                                             }
                                                         });
-                                                        this.setState({ complete: true });
-
+                                                        this.setState({complete: true});
+                                                        
                                                     }}>
                                                         <Form.Group>
                                                             <Form.Label>Phone Number</Form.Label>
@@ -138,8 +139,7 @@ class NewUserSurvey extends Component {
                                                     </Form>
                                                 )}
                                             </Mutation>
-                                        )
-                                    }
+                                    )}
                                 }}
                             </Query>
                         </Col>
