@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { ApolloConsumer } from 'react-apollo';
 
 class LogOut extends Component {
@@ -10,6 +10,7 @@ class LogOut extends Component {
                     <div>
                         <Nav className="mr-auto">
                             <Nav.Link href='/create'>Post Blog</Nav.Link>
+                            <Nav.Link href='/profile'>Profile</Nav.Link>
                             <Nav.Link onClick={() => {
                                 console.log(client);
                                 client.writeData({ data: { isLoggedIn: false } });
