@@ -10,7 +10,7 @@ class AddComment extends Component {
             showAddComment: this.props.isOpen,
             comment: '',
             blogId: '',
-            postedBy: '',
+            name: '',
         };
         this.handleOpenAddComment = this.handleOpenAddComment.bind(this);
         this.handleCloseAddComment = this.handleCloseAddComment.bind(this);
@@ -30,6 +30,7 @@ class AddComment extends Component {
     }
 
     handleCloseAddComment() {
+        this.setState({comment: "", blogId: ""});
         this.setState({showAddComment: false});
         this.props.handleClose(false);
     }
@@ -40,21 +41,35 @@ class AddComment extends Component {
             <div>
                 <Row className="justify-content-md-center">
                     <Col lg={8}>
+                    <Query query={queries.ME}>
+                                {({ data }) => {
+                                    if (!data) {
+                                        return (
+                                            <div>
+                                            </div>
+                                        );
+                                    }
+                                    const { me } = data;
+                                    if (!me) {
+                                        return (
+                                            <div>
+                                            </div>
+                                        );
+                                    } else {
+                                        return (
                     <Mutation mutation={queries.POST_COMMENT}>
                             {(postComment, { data }) => (
                                 <Form onSubmit={async (e) => {
                                     e.preventDefault();
-                                    console.log(this.state.comment, this.state.blogId);
+                                    //console.log(this.state.comment, this.state.blogId);
                                     postComment({
                                         variables: {
                                             content: this.state.comment,
-                                            blogId: this.state.blogId,
-                                            postedBy: this.state.postedBy
+                                            blogId: this.state.blogId
                                         }
                                     });
 
-                                    this.setState({comment: "", blogId: "", postedBy: ""});
-                                    this.setState({showAddComment: false});
+                                   
                                 alert('Comment Added');
                                 this.handleCloseAddComment();
                             }}>
@@ -68,11 +83,14 @@ class AddComment extends Component {
                                         />
                                       
                                     </Form.Group>
-                                    <div className= "card-footer">  {this.state.comment.postedBy} </div>
+                                    <div className= "card-footer"> <b>You:</b> {me.name} </div>
                                     <Button variant="outline-primary" type="submit">Post</Button>
                                 </Form>
                             )}
-                        </Mutation>              
+                        </Mutation>    
+                                        )}
+                                }}
+                     </Query>         
                         </Col>
                 </Row>
                

@@ -1,13 +1,28 @@
 import gql from 'graphql-tag';
 
 const ME = gql`
-    query {
-        me {
+query {
+    me {
+        id
+        name
+        email
+        phone
+        interest
+        address
+          blogs{
+          id
+          title
+        }
+          comments{
+          id
+          forBlog{
             id
-            name
-            email
+            title
+          }
+          content
         }
     }
+}
 `;
 
 const UPDATE_USER = gql`
@@ -56,9 +71,6 @@ query {
         comments {
           id
         }
-        tags {
-            tag
-        }
     }
 }
 `;
@@ -94,14 +106,37 @@ const GET_BLOG = gql`
                 id
                 content
             }
-            relatedTag {
-                id
-                tag
-            }
         }
     }
 `;
 
+
+const GET_ONLY_BLOG = gql`
+    query getBlog($id: ID!) {
+        getBlog(
+            id: $id
+        ) {
+            id
+            createdAt
+            updatedAt
+            title
+            article
+            likes
+            postedBy {
+                id
+                name
+            }
+            comments {
+                id
+                content
+                postedBy{
+                    id
+                    name
+                }
+            }
+        }
+    }
+`;
 const GET_ALL_TAGS = gql`
     query{
         allTags{
@@ -119,7 +154,9 @@ mutation postComment($content:String!, $blogId:ID!){
         blogId: $blogId
     ) {
       content
-      postedBy
+      postedBy{
+          name
+      }
     }
   }
 `;
@@ -221,6 +258,7 @@ export default {
     LOGIN,
     TOKEN,
     GET_USER,
-    GET_TAG
+    GET_TAG,
+    GET_ONLY_BLOG
 
 }
