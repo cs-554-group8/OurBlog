@@ -132,6 +132,7 @@ const GET_ONLY_BLOG = gql`
                     id
                     name
                 }
+                likes
             }
         }
     }
@@ -270,6 +271,28 @@ const ADD_BLOG_TO_TAG_BY_ID = gql`
      }
 `;
 
+const LIKE_COMMENT = gql`
+mutation likeComment($id: ID!){
+    likeComment(
+        id: $id
+    ) {
+        id
+        content
+        likes
+    }
+}
+`;
+
+const GET_ALL_COMMENTS = gql`
+    query {
+        allComments{
+            id
+            content
+            likes
+        }
+    }
+`;
+
 export default {
     ME,
     UPDATE_USER,
@@ -287,5 +310,7 @@ export default {
     GET_TAG,
     GET_ONLY_BLOG,
     POST_TAG,
-    ADD_BLOG_TO_TAG_BY_ID
+    ADD_BLOG_TO_TAG_BY_ID,
+    LIKE_COMMENT,
+    GET_ALL_COMMENTS
 }

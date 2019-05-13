@@ -4,6 +4,7 @@ import { Card } from 'react-bootstrap';
 import queries from '../queries';
 import { Query } from 'react-apollo';
 import AddComment from './Comments/AddComment';
+import LikeComment from "./LikeComment";
 
 class ArticleItem extends Component {
     constructor(props) {
@@ -27,6 +28,14 @@ class ArticleItem extends Component {
         console.log("inside")
         this.setState({ key: Math.random() })
     }
+
+    sortByKey(array, key) {
+        return array.sort(function(a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        });
+    }
+
     render() {
         console.log("state", this.state.id);
         return (
@@ -55,11 +64,11 @@ class ArticleItem extends Component {
                             </div>
                         );
                     } else {
-                        let arr = getBlog.comments;
+                        let arr = this.sortByKey(getBlog.comments, 'likes');
                         let divArr = [];
 
                         for (let i in arr) {
-                            divArr.push(<Card key={i}><div><b>{arr[i].postedBy.name}:</b> {arr[i].content}</div></Card>)
+                            divArr.push(<Card key={i}><div><b>{arr[i].postedBy.name}:</b> {arr[i].content} <br/> <LikeComment all={arr[i]}/> </div></Card>)
                         }
 
                         return (
