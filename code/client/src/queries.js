@@ -242,7 +242,33 @@ const GET_USER = gql`
      }
 `;
 
+const POST_TAG = gql`
+     mutation postTag($tag: String!, $blogId: ID!) {
+         postTag(
+             tag: $tag,
+             blogId: $blogId
+         ) {
+            id
+            tag
+            blogs {
+                id
+                title
+            }
+         }
+     }
+`;
 
+const ADD_BLOG_TO_TAG_BY_ID = gql`
+     mutation addBlogToTagById($blogId: ID!, $tagId: ID!) {
+         addBlogToTagById(
+             blogId: $blogId,
+             tagId: $tagId
+         ) {
+             id
+             tag
+         }
+     }
+`;
 
 export default {
     ME,
@@ -259,6 +285,7 @@ export default {
     TOKEN,
     GET_USER,
     GET_TAG,
-    GET_ONLY_BLOG
-
+    GET_ONLY_BLOG,
+    POST_TAG,
+    ADD_BLOG_TO_TAG_BY_ID
 }
