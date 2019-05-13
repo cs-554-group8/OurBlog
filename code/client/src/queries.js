@@ -26,11 +26,10 @@ query {
 `;
 
 const UPDATE_USER = gql`
-    mutation updateUser ($name: String!, $password:String, $email: String!, $phone: String, $address: String, $interest:String){
+    mutation updateUser ($name: String!, $email: String!, $phone: String, $address: String, $interest:String){
         updateUser(
             name: $name,
             email: $email,
-            password: $password,
             phone: $phone,
             address: $address,
             interest: $interest
