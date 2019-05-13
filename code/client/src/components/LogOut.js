@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import { ApolloConsumer } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
 
 class LogOut extends Component {
     render() {
@@ -11,12 +12,9 @@ class LogOut extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href='/create'>Post Blog</Nav.Link>
                             <Nav.Link href='/profile'>Profile</Nav.Link>
-                            <Nav.Link onClick={() => {
-                                console.log(client);
+                            <Nav.Link href="/" onClick={() => {
                                 client.writeData({ data: { isLoggedIn: false } });
                                 localStorage.clear();
-                                console.log("hello");
-                                console.log(client);
                             }}>Log Out</Nav.Link>
                         </Nav>
                     </div>

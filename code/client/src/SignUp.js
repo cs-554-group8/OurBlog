@@ -6,7 +6,6 @@ import { Mutation, ApolloConsumer } from 'react-apollo';
 import queries from './queries';
 
 import { Redirect } from 'react-router-dom';
-import NewUserSurvey from "./forms/NewUserSurvey";
 
 class SignUpContainer extends Component {
 
@@ -30,7 +29,7 @@ class SignUpContainer extends Component {
     };
 
     handleSignUp = async event => {
-        // event.preventDefault();
+        event.preventDefault();
 
         let email = this.state.email;
         let password = this.state.password;
@@ -80,11 +79,10 @@ class SignUpContainer extends Component {
         }
     }
 
+
 render() {
-    console.log("state.success", this.state.success);
     if (this.state.success) {
-        // return <Redirect to='/signup/survey' />;
-        return <NewUserSurvey info={this.state} />;
+        return <Redirect to='/' />;
     }
     else {
         return (
