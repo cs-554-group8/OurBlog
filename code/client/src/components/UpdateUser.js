@@ -25,7 +25,7 @@ class UpdateUser extends Component {
     }
 
     handleChange = e => {
-        console.log("handle change")
+       
         this.setState({ [e.target.name]: e.target.value, isInitialLoad: true });
     };
 
@@ -46,7 +46,7 @@ class UpdateUser extends Component {
                         );
                     }
                     const { me } = data;
-                    //this.addMeData(me);
+                   
 
                     console.log("data:", me)
                     if (!me) {
