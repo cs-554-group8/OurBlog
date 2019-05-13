@@ -1,123 +1,147 @@
-import React, {Component} from 'react';
-import { Mutation } from 'react-apollo';
-import { Form } from 'react-bootstrap';
-//Import the file where my query constants are defined
-import queries from '../queries';
+// import React, {Component} from 'react';
+// import { Mutation, Query } from 'react-apollo';
+// import { Form, Button, Row, Container, Col } from 'react-bootstrap';
+// //Import the file where my query constants are defined
+// import queries from '../queries';
+// import { Redirect } from 'react-router-dom';
 
-/* The React Apollo package grants access to a Query component, which takes a query as prop and executes it when its rendered. 
-That’s the important part: it executes the query when it is rendered. 
-It uses React’s render props pattern, using a child as a function implementation where you can access the result of the query as an argument.
-*/
-class UpdateUser extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showEditUser: this.props.isOpen,
-            name: "",
-            password: "",
-            email: ""
+// /* The React Apollo package grants access to a Query component, which takes a query as prop and executes it when its rendered. 
+// That’s the important part: it executes the query when it is rendered. 
+// It uses React’s render props pattern, using a child as a function implementation where you can access the result of the query as an argument.
+// */
+// class UpdateUser extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             name: "",
+//             email: "",
+//             address: "",
+//             interest: "",
+//             complete: false
 
-        };
-        this.handleCloseEditUser = this.handleCloseEditUser.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-    componentDidMount(){
-        this.setState({blogId: this.props.blogId})
-    }
+//         };
+//         this.handleChange = this.handleChange.bind(this);
+//     }
 
-    handleCloseEditUser() {
-        this.setState({showEditUser: false});
-        console.log("hi");
-        this.props.handleClose();
-    }
-    handleChange(event){
-        this.setState({name: event.target.value});
-    }
+//     handleChange = event => {
+//         this.setState({ [event.target.name]: event.target.value });
+//     };
 
 
-    render() {
-        let name, password, email;
-        
-        return (
-            <div>
-                    <Mutation mutation={queries.UPDATE_USER}>
-                        {(updateUser, {data}) => (
-                            <Form
-                                className='form'
-                                id='update-user'
-                                onSubmit={e => {
-
-                                    e.preventDefault();
-                                    updateUser({
-                                        variables: {
-                                            id: this.state.user.id,
-                                            name: this.prstateops.name,
-                                            password: this.state.password,
-                                            email: this.state.email
+//     render() {
+//         if (this.state.complete){
+//             return <Redirect to='/profile' />;
+//         }
+//         return (
+//             <div>
+//                 <Container>
+//                     <Row className="justify-content-md-center">
+//                         <Col lg={8}>
+//                             <Query query={queries.ME}>
+//                                 {({ data }) => {
+//                                     if (!data) {
+//                                         return (
+//                                             <div>
+//                                             </div>
+//                                         );
+//                                     }
+//                                     const { me } = data;
+//                                     if (!me) {
+//                                         return (
+//                                             <div>
+//                                             </div>
+//                                         );
+//                                     } else {
+//                                         return (
+                                            
+//                         <Mutation mutation={queries.UPDATE_USER} >
+//                         {(updateUser, {data}) => (
+//                             <Form
+//                                 className='form'
+//                                 id='update-user'
+//                                 onSubmit={e => {
+//                                     e.preventDefault();
+//                                     updateUser({
+//                                         variables: {
+//                                             name: me.name,
+//                                             password: me.password,
+//                                             email: me.email,
+//                                             phone: me.phone,
+//                                             address: me.address,
+//                                             interest: me.interest
                     
-                                        }
-                                    });    
-                                    this.setState({name: "", password: "", email: ""});
-                                    this.setState({showEditUser: false});
-                                    alert('user Updated');
-                                    this.props.handleClose();
-                                }}>
-                                <Form.Group controlId="user">
-                                    <Form.label>
-                                        User Name:
-                                        <br />
-                                        <input
-                                            ref={(node) => {
-                                                name = node;
-                                            }}
-                                            defaultValue={this.props.name}
-                                            autoFocus={true}
-                                        />
-                                    </Form.label>
-                                    <br/>
-                                    <br/>
-                                    <Form.label>
-                                        Email:
-                                        <br />
-                                        <input
-                                            ref={(node) => {
-                                                email = node;
-                                            }}
-                                            defaultValue={this.props.email}
-                                            autoFocus={true}
-                                        />
-                                    </Form.label>
-                                    <br/>
-                                    <br/>
-                                    <Form.label>
-                                        Password:
-                                        <br />
-                                        <input
-                                            ref={(node) => {
-                                                password = node;
-                                            }}
-                                            defaultValue={this.props.password}
-                                            autoFocus={true}
-                                        />
-                                    </Form.label>
+//                                         }
+//                                     });    
+//                                     this.setState({complete: true});
+                                   
+//                                     alert('user Updated');
+                                   
+//                                 }}>
+//                                 <Form.Group controlId="user">
+//                                     <Form.label>
+//                                         User Name:
+//                                     </Form.label>
+//                                     <Form.Control
+//                                     name="name"
+//                                     type="name"
+//                                     placeholder="User Name"
+//                                     onChange={this.handleChange}
+//                                     />
+//                                     <br/>
+//                                     <br/>
+//                                     <Form.label>
+//                                         Email:
+//                                     </Form.label>
+//                                     <Form.Control
+//                                     name="email"
+//                                     type="email"
+//                                     placeholder="Email"
+//                                     onChange={this.handleChange}
+//                                                             />
+//                                     <br/>
+//                                     <br/>
+//                                     <Form.label>
+//                                         Password:
+//                                     </Form.label>
+//                                     <Form.Control
+//                                     name="password"
+//                                     type="password"
+//                                     placeholder="Password"
+//                                     onChange={this.handleChange}
+//                                                             />
+//                                     <Form.label>
+//                                         Interest:
+//                                     </Form.label>
+//                                     <Form.Control
+//                                     name="password"
+//                                     type="password"
+//                                     placeholder="Password"
+//                                     onChange={this.handleChange}
+//                                                             />                       
 
-                                </Form.Group>
-                                <br />                    
-                                <br />
-                                <br />
-                                <br />
-                                <button className='button add-button' type='submit'>
-                                    Update Profile
-                                </button>
-                            </Form>
-                        )}
-                    </Mutation>
-                    <button className='button cancel-button' onClick={this.handleCloseEditUser}>
-                        Cancel
-                    </button>
-            </div>
-        );
-    }
-}
+//                                 </Form.Group>
+//                                 <br />                    
+//                                 <br />
+//                                 <br />
+//                                 <br />
+//                                 <button className='button add-button' type='submit'>
+//                                     Update Profile
+//                                 </button>
+//                             </Form>
+//                         )}
+//                     </Mutation>
+//                                         )}
+//                                 }}
+//                     <button className='button cancel-button' >
+//                         Cancel
+//                     </button>
+//                     </Query>
+//         </Col>
+//         </Row>
+//         </Container>
+//         </div>
+//         );
+//     }
+// }
 
-export default UpdateUser;
+// export default UpdateUser;

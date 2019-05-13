@@ -9,11 +9,11 @@ class  ArticleItem extends Component{
     constructor (props) {
         super(props);
         this.state= {
-        //articles: [],
         id:'',
         showAddComment: false
         };
         this.handleOpenAddComment = this.handleOpenAddComment.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
     handleOpenAddComment() {
         this.setState({showAddComment: true});
@@ -23,12 +23,12 @@ componentDidMount(){
     this.setState({id: id});
 }  
 handleClose(){
-
+    console.log("inside")
 }
 render(){
     console.log("state", this.state.id);
         return (
-            <Query query={queries.GET_BLOG}
+            <Query query={queries.GET_ONLY_BLOG}
             variables={{ id: this.state.id }}
         >
          {({ loading, error, data, refetch }) => {
@@ -52,6 +52,13 @@ render(){
                         </div>
                     );
                 } else {
+                    let arr = getBlog.comments;
+                    let divArr = [];
+
+                    for(let i in arr){
+                        divArr.push(<Card key={i}><div><b>{arr[i].postedBy.name}:</b> {arr[i].content}</div></Card>)
+                    }  
+
                     return(
                         <div>
                             <Card>
@@ -64,23 +71,21 @@ render(){
                                     <Card.Text>
                                         {getBlog.article}
                                     </Card.Text>
-    
+                                    <br/>
+                                    <div >{getBlog.postedBy.name}</div>
                                 </Card.Body>
                             </Card>
                      <br/>
                      <br />
                            <div> 
-                               <Card >
-                               {getBlog.comments.content},
-                               {getBlog.postedBy.name}
-                               </Card>
+                                {divArr}
                            </div>
                           <br />
 
                             <AddComment blogId={this.state.id} handleClose={this.handleClose}/>
                         </div>
             );
-        }
+    }
     }
     }
 </Query>

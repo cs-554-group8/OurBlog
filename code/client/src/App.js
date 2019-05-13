@@ -12,6 +12,7 @@ import ArticleItem from './components/ArticleItem';
 import ShowProfile from './ShowProfile';
 import AccountButtons from './components/AccountButtons';
 import LogOut from './components/LogOut';
+import UpdateUser from './components/UpdateUser'
 
 function App(isLoggedIn) {
   return (
@@ -43,7 +44,8 @@ function App(isLoggedIn) {
           <Route path="/create" component={CreateArticle} />
           <Route path="/signup/survey" component={NewUserSurvey} />
           <Route path="/article/:id" component={ArticleItem} />
-          <Route path="/profile/:id" component={ShowProfile} />
+          <Route path="/profile/update" exact component={UpdateUser} />
+          <Route path="/profile/" component={ShowProfile} />
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
                   <Route path="/pokemon/" component={PokemonListContainer} /> */}
         </Switch>
