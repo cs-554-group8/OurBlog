@@ -36,7 +36,7 @@ class AddComment extends Component {
     }
 
     render() {
-        let content, blogId;
+        let content;
         return (
             <div>
                 <Row className="justify-content-md-center">

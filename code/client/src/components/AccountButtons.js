@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
-import { ApolloProvider, Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import LogOut from './LogOut';
 
 function AccountButtons(isLoggedIn) {
     return (
