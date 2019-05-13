@@ -1,9 +1,5 @@
 # Instruction for Client
 
-## Installztion
-
-You need to install ImageMagic at: <https://imagemagick.org/script/download.php>
-
 ## Available Scripts
 
 In the project directory, you can run:
