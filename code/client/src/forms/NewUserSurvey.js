@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 class NewUserSurvey extends Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             street_address: "",
             address2: "",
             city: "",
@@ -19,14 +19,30 @@ class NewUserSurvey extends Component {
             complete: false
         }
         this.handleChange = this.handleChange.bind(this);
+        this.submissionCheck = this.submissionCheck.bind(this);
     }
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
 
+    phonenumber() {
+        var phoneno = /^\d{10}$/;
+        if ((this.state.phone.match(phoneno))){
+            return true;
+        }
+        else {
+            alert("Please enter a valid phone number.")
+            return false;
+        }
+    }
+
+    submissionCheck() {
+        return this.phonenumber()
+    }
+
     render() {
-        if (this.state.complete){
+        if (this.state.complete) {
             return <Redirect to='/' />;
         }
         let address;
@@ -57,17 +73,18 @@ class NewUserSurvey extends Component {
                                                         e.preventDefault();
                                                         let address_arr = [this.state.street_address, this.state.address2, this.state.city, this.state.state, this.state.zipcode];
                                                         address = address_arr.join(", ");
-                                                        updateUser({
-                                                            variables: {
-                                                                name: me.name,
-                                                                email: me.email,
-                                                                phone: this.state.phone,
-                                                                address: address,
-                                                                interest: this.state.interest
-                                                            }
-                                                        });
-                                                        this.setState({complete: true});
-                                                        
+                                                        if (this.submissionCheck()) {
+                                                            updateUser({
+                                                                variables: {
+                                                                    name: me.name,
+                                                                    email: me.email,
+                                                                    phone: this.state.phone,
+                                                                    address: address,
+                                                                    interest: this.state.interest
+                                                                }
+                                                            });
+                                                            this.setState({ complete: true });
+                                                        }
                                                     }}>
                                                         <Form.Group>
                                                             <Form.Label>Phone Number</Form.Label>
@@ -139,7 +156,8 @@ class NewUserSurvey extends Component {
                                                     </Form>
                                                 )}
                                             </Mutation>
-                                    )}
+                                        )
+                                    }
                                 }}
                             </Query>
                         </Col>
