@@ -45,7 +45,7 @@ class UpdateUser extends Component {
             <ApolloConsumer>
                 {client =>
                     <Query query={queries.ME}>
-                        {({ data }) => {
+                        {({ data, refetch }) => {
                             if (!data) {
                                 return (
                                     <div>
@@ -53,7 +53,7 @@ class UpdateUser extends Component {
                                 );
                             }
                             const { me } = data;
-
+                            refetch();
                             this.addMeData(me);
                             console.log("data:", me)
                             if (!me) {
