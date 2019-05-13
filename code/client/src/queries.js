@@ -152,8 +152,9 @@ mutation postComment($content:String!, $blogId:ID!){
         content: $content, 
         blogId: $blogId
     ) {
-      content
-      postedBy{
+        id
+        content
+        postedBy{
           name
       }
     }

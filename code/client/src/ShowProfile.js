@@ -23,7 +23,7 @@ class ShowProfile extends Component {
                 <Row className="justify-content-md-center">
                     <Col lg={8}>
                         <Query query={queries.ME}>
-                            {({ data }) => {
+                            {({ data, refetch }) => {
                                 if (!data) {
                                     return (
                                         <div>
@@ -31,6 +31,7 @@ class ShowProfile extends Component {
                                     );
                                 }
                                 const { me } = data;
+                                refetch();
                                 console.log("me data:", data)
                                 if (!me) {
                                     return (

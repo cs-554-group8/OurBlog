@@ -30,7 +30,7 @@ class AddComment extends Component {
     }
 
     handleCloseAddComment() {
-        this.setState({ comment: "", blogId: "" });
+        this.setState({ comment: "" });
         this.setState({ showAddComment: false });
         this.props.handleClose(false);
     }
@@ -61,14 +61,14 @@ class AddComment extends Component {
                                             {(postComment, { data }) => (
                                                 <Form onSubmit={async (e) => {
                                                     e.preventDefault();
-                                                   
+                                                    
                                                     postComment({
                                                         variables: {
                                                             content: this.state.comment,
                                                             blogId: this.state.blogId
                                                         }
                                                     });
-
+                                                    
 
                                                     alert('Comment Added');
                                                     this.handleCloseAddComment();
@@ -84,7 +84,9 @@ class AddComment extends Component {
 
                                                     </Form.Group>
                                                     <div className="card-footer"> <b>You:</b> {me.name} </div>
-                                                    <Button variant="outline-primary" type="submit">Post</Button>
+                                                    
+                                                     <Button variant="outline-primary" type="submit">Post</Button>
+                                                    
                                                 </Form>
                                             )}
                                         </Mutation>

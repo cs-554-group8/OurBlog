@@ -44,9 +44,9 @@ async function postBlog(parent, args, context, info) {
     return Blog;
 }
 
-function postComment(parent, args, context, info) {
+async function postComment(parent, args, context, info) {
     const userId = getUserId(context);
-    return context.prisma.createComment({
+    return await context.prisma.createComment({
         content: args.content,
         postedBy: {
             connect: {
