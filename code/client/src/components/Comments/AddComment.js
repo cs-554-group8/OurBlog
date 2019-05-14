@@ -68,10 +68,8 @@ class AddComment extends Component {
                                                             blogId: this.state.blogId
                                                         }
                                                     });
-                                                    
-
-                                                    alert('Comment Added');
                                                     this.handleCloseAddComment();
+                                                    content.value = "";
                                                 }}>
                                                     <Form.Group controlId="comment">
                                                         <Form.Label>Comment</Form.Label>
