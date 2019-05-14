@@ -106,9 +106,7 @@ render() {
                                                 <h1>Sign Up</h1>
                                                 <Form onSubmit={async (e) => {
                                                     e.preventDefault();
-                                                    console.log(this.state);
                                                     let check = await this.submissionCheck();
-                                                    console.log(check);
                                                     if (check) {
                                                         this.handleSignUp(e);
                                                         signup({

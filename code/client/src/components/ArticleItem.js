@@ -25,7 +25,6 @@ class ArticleItem extends Component {
         this.setState({ id: id });
     }
     handleClose() {
-        console.log("inside")
         this.setState({ key: Math.random() })
     }
 

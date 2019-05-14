@@ -10,7 +10,6 @@ const ArticleCard = props => {
             variables={{ id: props.id }}
         >
             {({ data }) => {
-                console.log("data in card:", data)
                 if (!data) {
                     return (
                         <div>

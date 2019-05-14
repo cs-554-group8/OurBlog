@@ -55,7 +55,6 @@ class UpdateUser extends Component {
                             const { me } = data;
                             refetch();
                             this.addMeData(me);
-                            console.log("data:", me)
                             if (!me) {
                                 return (
                                     <div>
