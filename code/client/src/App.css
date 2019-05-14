@@ -5,9 +5,20 @@
     }
 }
 
+.navbar{
+    background: #123C69;
+   
+}
 
-
-
+.navbar-light .navbar-nav .nav-link{
+    color:  #EDC7B7;
+}
+.navbar-light:hover  .navbar-nav:hover .nav-link :hover{
+    color:  whitesmoke
+}
+.navbar-nav:hover{
+    color:  whitesmoke
+}
 .button {
     padding: 0.4rem .8rem;
     background-color: #28547a;
@@ -17,9 +28,10 @@
 }
 
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(87, 85, 85, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 50%;
     margin: 0 auto 20px;
+    background:whitesmoke;
 }
 
 
@@ -30,9 +42,4 @@ select {
     border-style: solid;
     border-color: #28547a;
 }
-.signup-h2 {
-    font-size: 25px;
-    color: gray;
-    font-family: "Domine";
-    text-align: center;
-}
+

@@ -18,7 +18,7 @@ function App(isLoggedIn) {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Navbar bg="dark" variant="dark">
+          <Navbar className="navbar">
             <Container fluid={true}>
               <Navbar.Brand href="/">
                 <img

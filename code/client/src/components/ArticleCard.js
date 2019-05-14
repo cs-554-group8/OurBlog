@@ -26,7 +26,7 @@ const ArticleCard = props => {
                 } else {
                     return (
                         <div>
-                            <Card>
+                            <Card className = "card">
                                 <Card.Body>
                                     <LikeButton all={getBlog} />
                                     <Card.Title>{getBlog.title}</Card.Title>
