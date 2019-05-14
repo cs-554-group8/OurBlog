@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Nav } from 'react-bootstrap';
 import { ApolloConsumer } from 'react-apollo';
-import { Redirect } from 'react-router-dom';
 
 class LogOut extends Component {
     render() {

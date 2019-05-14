@@ -1,6 +1,6 @@
 import React from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 import SignIn from './SignIn';
@@ -40,17 +40,36 @@ function App(isLoggedIn) {
         </header>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/signin" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route path="/create" component={CreateArticle} />
+          <PrivateRoute path="/signin" component={SignIn} isLoggedIn={isLoggedIn.isLoggedIn} />
+          <PrivateRoute exact path="/signup" component={SignUp} isLoggedIn={isLoggedIn.isLoggedIn} />
+          <ExtraPrivateRoute path="/create" component={CreateArticle} isLoggedIn={isLoggedIn.isLoggedIn} />
           <Route path="/article/:id" component={ArticleItem} />
-          <Route path="/profile/update" exact component={UpdateUser} />
-          <Route path="/profile/" component={ShowProfile} />
+          <ExtraPrivateRoute path="/profile/update" exact component={UpdateUser} isLoggedIn={isLoggedIn.isLoggedIn} />
+          <ExtraPrivateRoute path="/profile/" component={ShowProfile} isLoggedIn={isLoggedIn.isLoggedIn} />
 
         </Switch>
       </div>
     </Router>
   );
 }
+
+
+const PrivateRoute = ({component: Component, isLoggedIn: isLoggedIn, ...rest}) => (
+  <Route {...rest} render={(props) => (
+    isLoggedIn === true
+    ? <Redirect to='/' />
+    : <Component {...props} />
+  )} />
+
+);
+
+const ExtraPrivateRoute = ({component: Component, isLoggedIn: isLoggedIn, ...rest}) => (
+  <Route {...rest} render={(props) => (
+    isLoggedIn === false
+    ? <Redirect to='/signup' />
+    : <Component {...props} />
+  )} />
+
+);
 
 export default App;

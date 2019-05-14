@@ -65,14 +65,14 @@ class ShowProfile extends Component {
 
                                                 <ListGroup.Item>
                                                     <b>Blogs</b>: {me.blogs.map((blog, index) => (
-                                                        <ul> {blog.title}</ul>
+                                                        <ul> <a href={`/article/${blog.id}`}>{blog.title}</a></ul>
                                                     ))}
                                                 </ListGroup.Item>
 
                                                 <ListGroup.Item>
 
                                                     <b> Comments</b>: {me.comments.map((comment, index) => (
-                                                        <Card.Header> <b>Blog:</b> {comment.forBlog ? comment.forBlog.title : <p>Blog not found</p>}
+                                                        <Card.Header> <b>Blog:</b> {comment.forBlog ? <a href={`/article/${comment.forBlog.id}`}>{comment.forBlog.title}</a> : <p>Blog not found</p>}
                                                             <br />
                                                             <ListGroup.Item>  {comment.content} </ListGroup.Item>
 
