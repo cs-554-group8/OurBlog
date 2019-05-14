@@ -31,7 +31,6 @@ class ShowProfile extends Component {
                                 }
                                 const { me } = data;
                                 refetch();
-                                console.log("me data:", data)
                                 if (!me) {
                                     return (
                                         <div>
